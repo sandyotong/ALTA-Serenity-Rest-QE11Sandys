@@ -17,6 +17,6 @@ Feature: GET List User
     When Send request get list users
     Then Should return status code 404 Not Found
     Examples:
-      | page      |
-      | 1adsf1341 |
-      | !$#asd    |
+      | page |
+      | 2324 |
+      | $$#% |

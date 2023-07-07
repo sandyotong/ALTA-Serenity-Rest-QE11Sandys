@@ -17,6 +17,7 @@ Feature: API Automation Testing ALTA QE Batch 11
     Then Status code should be 201 Created
     And Response body name was "Sandy Tri Saputra" and job was "Quality Engineer"
     And Validate post create user JSON Schema
+
   @Latihan
   Scenario Outline: Put update user with valid parameter id and JSON
     Given Put update user with valid id <id> and json
