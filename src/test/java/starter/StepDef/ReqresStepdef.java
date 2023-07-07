@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Steps;
 import starter.Utils.Constans;
@@ -19,7 +20,7 @@ public class ReqresStepdef {
     ReqresAPI reqresAPI;
     @Given("Get list users with valid parameter page {int}")
     public void getListUsersWithValidParameterPage(int page) {
-        reqresAPI.getListUsers(page);
+        reqresAPI.getListUsersValidParamPage(page);
     }
 
     @When("Send request get list users")
@@ -62,6 +63,11 @@ public class ReqresStepdef {
                 .body(ReqresResponses.NAME,equalTo(name))
                 .body(ReqresResponses.JOB,equalTo(job));
     }
+    @And("Validate post create user JSON Schema")
+    public void validatePostCreateUserJSONSchema() {
+        File json = new File(Constans.JSON_SCHEMA+"/CreateUserJSONSchema.json");
+        SerenityRest.and().assertThat().body(JsonSchemaValidator.matchesJsonSchema(json));
+    }
 
     //PUT
     @Given("Put update user with valid id {int} and json")
@@ -75,10 +81,10 @@ public class ReqresStepdef {
         SerenityRest.when()
                 .put(ReqresAPI.PUT_UPDATE_USER);
     }
-
     @And("Validate update list user JSON Schema")
     public void validateUpdateListUserJSONSchema() {
-
+        File json = new File(Constans.JSON_SCHEMA+"/UpdateUserJSONSchema.json");
+        SerenityRest.and().assertThat().body(JsonSchemaValidator.matchesJsonSchema(json));
     }
 
     //DELETE

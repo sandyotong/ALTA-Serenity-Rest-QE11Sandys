@@ -16,14 +16,14 @@ Feature: API Automation Testing ALTA QE Batch 11
     When Send request post create user
     Then Status code should be 201 Created
     And Response body name was "Sandy Tri Saputra" and job was "Quality Engineer"
-
+    And Validate post create user JSON Schema
   @Latihan
   Scenario Outline: Put update user with valid parameter id and JSON
     Given Put update user with valid id <id> and json
     When Send response put update user
     Then Status code should be 200 OK
     And Response body name was "Sandy Tri Saputra" and job was "QA Engineer"
-#    And Validate update list user JSON Schema
+    And Validate update list user JSON Schema
     Examples:
       | id |
       | 1  |
