@@ -35,7 +35,8 @@ public class ReqresStepdef {
 
     @And("Response body page value should be {int}")
     public void responseBodyPageValueShouldBe(int page) {
-        SerenityRest.and().body("page",equalTo(page));
+        SerenityRest.and()
+                .body(ReqresResponses.PAGE,equalTo(page));
     }
 
     //POST
@@ -72,7 +73,7 @@ public class ReqresStepdef {
     //PUT
     @Given("Put update user with valid id {int} and json")
     public void putUpdateUserWithValidIdAndJson(int id) {
-        File json = new File(Constans.REQ_BODY+"/UpdateUser.json");
+        File json = new File(Constans.REQ_BODY+"/UpdateJson/UpdateUser.json");
         reqresAPI.putUpdateUser(id,json);
     }
 
