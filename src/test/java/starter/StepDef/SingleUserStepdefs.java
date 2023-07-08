@@ -18,6 +18,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class SingleUserStepdefs {
     @Steps
     ReqresAPI reqresAPI;
+
     @Given("Get single user with id {int}")
     public void getSingleUserWithId(int id) {
         reqresAPI.getSingleUser(id);

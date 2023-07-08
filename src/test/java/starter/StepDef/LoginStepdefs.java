@@ -49,6 +49,19 @@ public class LoginStepdefs {
         reqresAPI.loginUser(json);
     }
 
+    //Negative Case 3
+    @Given("User login with blank email and valid password")
+    public void userLoginWithBlankEmailAndValidPassword() {
+        File json = new File(Constans.REQ_BODY+"/LoginJson/EmptyEmailValidPassword.json");
+        reqresAPI.loginUser(json);
+    }
+
+    @And("Validate json schema failed login user with blank email and valid password")
+    public void validateJsonSchemaFailedLoginUserWithBlankEmailAndValidPassword() {
+        File json = new File(Constans.JSON_SCHEMA+"/LoginJSONSchema/EmptyEmailJSONSchema.json");
+        SerenityRest.and().assertThat().body(JsonSchemaValidator.matchesJsonSchema(json));
+    }
+
     @And("Response error body should be {string}")
     public void responseErrorBodyShouldBe(String error) {
         SerenityRest.then().body(ReqresResponses.ERROR_MASSAGE,equalTo(error));
@@ -60,16 +73,34 @@ public class LoginStepdefs {
         SerenityRest.and().assertThat().body(JsonSchemaValidator.matchesJsonSchema(json));
     }
 
-    //Negative Case 3
+    //Negative Case 4
     @Given("User login with unregister email and password")
     public void userLoginWithUnregisterEmailAndPassword() {
         File json = new File(Constans.REQ_BODY+"/LoginJson/LoginInvalidEmailPassword.json");
         reqresAPI.loginUser(json);
     }
+    @And("Response error body should {string}")
+    public void responseErrorBodyShould(String error) {
+        SerenityRest.then().body(ReqresResponses.ERROR_MASSAGE,equalTo(error));
+
+    }
 
     @And("Validate json schema failed login user with unregister email and password")
     public void validateJsonSchemaFailedLoginUserWithUnregisterEmailAndPassword() {
         File json = new File(Constans.JSON_SCHEMA+"/LoginJSONSchema/LoginInvalidJSONSchema.json");
+        SerenityRest.and().assertThat().body(JsonSchemaValidator.matchesJsonSchema(json));
+    }
+
+    //Negative Case 5
+    @Given("Empty request body")
+    public void emptyRequestBody() {
+        File json = new File(Constans.REQ_BODY+"/LoginJson/Blank.json");
+        reqresAPI.loginUser(json);
+    }
+
+    @And("Validate json schema failed login user with empty email and password")
+    public void validateJsonSchemaFailedLoginUserWithEmptyEmailAndPassword() {
+        File json = new File(Constans.JSON_SCHEMA+"/LoginJSONSchema/BlankJSONSchema.json");
         SerenityRest.and().assertThat().body(JsonSchemaValidator.matchesJsonSchema(json));
     }
 }

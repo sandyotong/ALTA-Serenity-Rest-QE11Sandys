@@ -31,3 +31,9 @@ Feature: POST Create User
     Given Post create user with name is $AND! and job is QA Engineer
     When Send request post create user
     Then Status code should be 400 Bad Request
+
+  @Tugas @Negative
+  Scenario: Post create user with empty request body
+    Given Empty request body for create user
+    When Send request post create user
+    Then Status code should be 400 Bad Request

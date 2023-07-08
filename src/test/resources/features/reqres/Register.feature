@@ -21,3 +21,21 @@ Feature: Register User
     Examples:
       |error|
       |Missing password     |
+
+  @Tugas
+  Scenario: Register with no email and valid password
+    Given User register with blank email and valid password
+    When Send request post register user
+    Then Status code should be 400 Bad Request
+
+  @Tugas
+  Scenario: Register with not valid email format and valid password
+    Given User register with not valid email format
+    When Send request post register user
+    Then Status code should be 400 Bad Request
+
+  @Tugas
+  Scenario: Register with empty request body
+    Given User register with Empty request body for register
+    When Send request post register user
+    Then Status code should be 400 Bad Request

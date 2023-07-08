@@ -14,6 +14,8 @@ import java.io.File;
 public class PatchUpdateUserStepdefs {
     @Steps
     ReqresAPI reqresAPI;
+
+    //Positive Case 1
     @Given("Patch update user with valid id {int} json")
     public void patchUpdateUserWithValidIdJson(int id){
         File json = new File(Constans.REQ_BODY+"/PatchJson/PatchUpdateValid.json");
@@ -31,6 +33,7 @@ public class PatchUpdateUserStepdefs {
         SerenityRest.and().assertThat().body(JsonSchemaValidator.matchesJsonSchema(json));
     }
 
+    //Negative Case 1
     @Given("Patch update user with empty name and job with id {int}")
     public void patchUpdateUserWithEmptyNameAndJobWithId(int id) {
         File json = new File(Constans.REQ_BODY+"/PatchJson/PatchUpdateBlank.json");

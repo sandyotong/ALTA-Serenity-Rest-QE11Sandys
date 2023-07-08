@@ -9,8 +9,15 @@ public class DeleteUserStepdefs {
     ReqresAPI reqresAPI;
 
     //Negative Case 1
+    @Given("Page {int} is an invalid parameter for delete a list of users")
+    public void pageIsAnInvalidParameterForDeleteAListOfUsers(int id) {
+        reqresAPI.deleteUser(id);
+    }
+
+    //Negative Case 2
     @Given("Delete user with invalid id {string}")
     public void deleteUserWithInvalidId(String id) {
         reqresAPI.deleteInvalidUser(id);
     }
+
 }

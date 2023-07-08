@@ -10,6 +10,12 @@ Feature: DELETE User
       | 2  |
 
   @Tugas @Negative
+  Scenario: Delete user with exceeded parameter id
+    Given Page 100 is an invalid parameter for delete a list of users
+    When Send request delete user
+    Then Should return status code 404 Not Found
+
+  @Tugas @Negative
   Scenario Outline: Delete user with invalid parameter
     Given Delete user with invalid id "<id>"
     When Send request delete user

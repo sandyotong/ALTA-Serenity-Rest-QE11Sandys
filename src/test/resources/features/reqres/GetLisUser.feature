@@ -20,3 +20,16 @@ Feature: GET List User
       | page |
       | 2324 |
       | $$#% |
+
+  @Tugas @Negative
+  Scenario: Get a list of users with the page parameter exceeded
+    Given Page 3 is an invalid parameter for get a list of users
+    When Send request get list users
+    Then Should return status code 404 Not Found
+
+  @Tugas @Negative
+  Scenario: Get list users with empty parameter page
+    Given Empty parameter page for get list users
+    When Send request get list users
+    Then Should return status code 404 Not Found
+

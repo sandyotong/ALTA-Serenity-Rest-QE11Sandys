@@ -18,8 +18,16 @@ Feature: LOGIN User
     And Response error body should be "<error>"
     And Validate json schema failed login user with valid email and blank password
     Examples:
-      |error|
-      |Missing password     |
+      | error            |
+      | Missing password |
+
+  @Tugas @Negative
+  Scenario: Login user with empty email and valid password
+    Given User login with blank email and valid password
+    When Send request post login user
+    Then Status code should be 400 Bad Request
+
+
 
   @Tugas @Negative
   Scenario: User login with unregister email and password
@@ -27,3 +35,9 @@ Feature: LOGIN User
     When Send request post login user
     Then Status code should be 400 Bad Request
     And Validate json schema failed login user with unregister email and password
+
+  @Tugas @Negative
+  Scenario: Login with empty request body
+    Given Empty request body
+    When Send request post login user
+    Then Status code should be 400 Bad Request

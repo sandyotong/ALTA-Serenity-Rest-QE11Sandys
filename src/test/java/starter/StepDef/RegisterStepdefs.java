@@ -17,6 +17,8 @@ import static org.hamcrest.Matchers.equalTo;
 public class RegisterStepdefs {
     @Steps
     ReqresAPI reqresAPI;
+
+    //Positive Case 1
     @Given("User register with valid email and password")
     public void userRegisterWithValidEmailAndPassword() {
         File json = new File(Constans.REQ_BODY+"/RegisterJson/RegisterUserValid.json");
@@ -56,5 +58,26 @@ public class RegisterStepdefs {
     public void validateJsonSchemaFailedRegisterUserWithValidEmailAndBlankPassword() {
         File json = new File(Constans.JSON_SCHEMA+"/RegisterJsonSchema/RegisterUserInvalidJSONSchema.json");
         SerenityRest.and().assertThat().body(JsonSchemaValidator.matchesJsonSchema(json));
+    }
+
+    //Negative Case 2
+    @Given("User register with blank email and valid password")
+    public void userRegisterWithBlankEmailAndValidPassword() {
+        File json = new File(Constans.REQ_BODY+"/RegisterJson/BlankEmail.json");
+        reqresAPI.registerUser(json);
+    }
+
+    //Negative Case 3
+    @Given("User register with not valid email format")
+    public void userRegisterWithNotValidEmailFormat() {
+        File json = new File(Constans.REQ_BODY+"/RegisterJson/NotValidEmail.json");
+        reqresAPI.registerUser(json);
+    }
+
+    //Negative Case 4
+    @Given("User register with Empty request body for register")
+    public void userRegisterWithEmptyRequestBodyForRegister() {
+        File json = new File(Constans.REQ_BODY+"/RegisterJson/Blank.json");
+        reqresAPI.registerUser(json);
     }
 }
