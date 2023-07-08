@@ -40,6 +40,7 @@ public class RegisterStepdefs {
         SerenityRest.and().assertThat().body(JsonSchemaValidator.matchesJsonSchema(json));
     }
 
+    //Negative Case 1
     @Given("User register with valid email and blank password")
     public void userRegisterWithValidEmailAndBlankPassword() {
         File json = new File(Constans.REQ_BODY+"/RegisterJson/RegisterUserInvalidPassword.json");

@@ -1,5 +1,5 @@
 Feature: Register User
-  @Tugas_Positive_Case
+  @Tugas @Positive
   Scenario Outline: User register with valid email and password
     Given User register with valid email and password
     When Send request post register user
@@ -11,7 +11,7 @@ Feature: Register User
       | 4  |QpwL5tke4Pnpja7X4       |
 
 
-  @Tugas_Negative_Case
+  @Tugas @Negative
   Scenario Outline: User register with valid email and blank password
     Given User register with valid email and blank password
     When Send request post register user

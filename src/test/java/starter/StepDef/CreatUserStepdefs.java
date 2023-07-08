@@ -16,7 +16,7 @@ public class CreatUserStepdefs {
     ReqresAPI reqresAPI;
     @Given("Post create user with invalid json")
     public void postCreateUserWithInvalidJson() {
-        File json = new File(Constans.REQ_BODY+"/CreateJson/BlankId.json");
+        File json = new File(Constans.REQ_BODY+"/CreateJson/CreateBlankId.json");
         reqresAPI.postCreateUser(json);
     }
 
@@ -27,7 +27,7 @@ public class CreatUserStepdefs {
 
     @Given("Post create user with category name, job, and hobby")
     public void postCreateUserWithCategoryNameJobAndHobby() {
-        File json = new File(Constans.REQ_BODY+"/CreateJson/UpdateInvalidHobby.json");
+        File json = new File(Constans.REQ_BODY+"/CreateJson/CreateInvalidHobby.json");
         reqresAPI.postCreateUser(json);
     }
 

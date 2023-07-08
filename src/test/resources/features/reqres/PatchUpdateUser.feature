@@ -1,5 +1,5 @@
 Feature: PATCH Update User
-  @Tugas_Positive_Case
+  @Tugas @Positive
   Scenario Outline: Patch update user with valid id and JSON
     Given Patch update user with valid id <id> json
     When Send patch update user
@@ -10,7 +10,7 @@ Feature: PATCH Update User
       | id | name     | job           |
       | 2  | morpheus | zion resident |
 
-  @Tugas_Negative_Case
+  @Tugas @Negative
   Scenario: Patch update user with blank name and job
     Given Patch update user with empty name and job with id 2
     When Send patch update user

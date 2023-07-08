@@ -1,5 +1,5 @@
 Feature: GET List User
-  @Tugas_Positive_Case
+  @Latihan
   Scenario Outline: Get list users with valid parameter page
     Given Get list users with valid parameter page <page>
     When Send request get list users
@@ -11,7 +11,7 @@ Feature: GET List User
       | 2    |
 
 
-  @Tugas_Negative_Case
+  @Tugas @Negative
   Scenario Outline: Get list users with invalid parameter
     Given Get list users with page "<page>"
     When Send request get list users
